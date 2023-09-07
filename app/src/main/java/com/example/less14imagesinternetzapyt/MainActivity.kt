@@ -18,6 +18,8 @@ class MainActivity: Activity() {
     private lateinit var forecastTextViewWind: TextView
     private lateinit var forecastTwoTextViewTemperature: TextView
     private lateinit var forecastTwoTextViewWind: TextView
+    private lateinit var forecastThirdTextViewTemperature: TextView
+    private lateinit var forecastThirdTextViewWind: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,9 @@ class MainActivity: Activity() {
 
         forecastTwoTextViewTemperature = findViewById(R.id.forecastTwoTemperatureView)
         forecastTwoTextViewWind = findViewById(R.id.forecastWindViewTwo)
+
+        forecastThirdTextViewTemperature = findViewById(R.id.forecastThirdTemperatureView)
+        forecastThirdTextViewWind = findViewById(R.id.forecastWindViewThird)
 
         requestButton = findViewById(R.id.button)
         requestButton.setOnClickListener {
@@ -69,6 +74,17 @@ class MainActivity: Activity() {
                                 val forecastWind = firstForecast.wind
                                 forecastTwoTextViewWind.text = forecastWind
                                 forecastTwoTextViewTemperature.text = forecastTemperature
+                            }
+                        }
+
+                        if (data != null) {
+                            val forecastList = data.forecast
+                            if (forecastList.isNotEmpty()) {
+                                val firstForecast = forecastList[2]
+                                val forecastTemperature = firstForecast.temperature
+                                val forecastWind = firstForecast.wind
+                                forecastThirdTextViewWind.text = forecastWind
+                                forecastThirdTextViewTemperature.text = forecastTemperature
                             }
                         }
 
